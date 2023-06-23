@@ -1,0 +1,47 @@
+.sidebar {
+	width: 10%;
+	height: 100vh;
+	background-color: #00dbde;
+	background-image: linear-gradient(90deg, #00dbde 0%, #00a5ff 100%);
+
+	color: white;
+	padding: 20px;
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.option-one,
+.option-two,
+.option-three,
+.option-five,
+.option-four {
+	padding: 10px;
+	margin-top: 40px;
+	color: #333;
+	cursor: pointer;
+	width: 100%;
+	background-color: #0dcbf1;
+	border-radius: 20px;
+	box-shadow: 10px 10px 12px -5px rgba(0, 0, 0, 0.75);
+
+	transition: background-color 0.3s;
+}
+
+.option-one:hover,
+.option-two:hover,
+.option-three:hover,
+.option-five:hover,
+.option-four:hover {
+	background-color: #ddd;
+}
+
+.option-one.active,
+.option-two.active,
+.option-three.active,
+.option-four.active {
+	background-color: #ccc;
+	font-weight: bold;
+}

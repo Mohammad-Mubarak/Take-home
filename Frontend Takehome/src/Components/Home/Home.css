@@ -1,0 +1,28 @@
+.main-container {
+    width: 100vw; /* Sets the width to 100% of the viewport */
+    height: 100vh; /* Sets the height to 100% of the viewport */
+    display: flex; /* Displays the child elements side by side */
+    flex-wrap: wrap;
+}
+
+.side {
+    width: 10%;
+    background-color: #f1f1f1; /* Just for demonstration */
+}
+
+.Task_bar {
+    width: 90%;
+    background-color: #ccc; 
+    /* Just for demonstration */
+    overflow-y: scroll;
+}
+
+.Task_bar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
