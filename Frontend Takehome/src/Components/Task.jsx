@@ -6,8 +6,12 @@ import "./Task.css"
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import axios from 'axios'
+
+
 
 const TaskForm = () => {
+
   const initialValues = {
     name: '',
     description: '',
@@ -17,7 +21,7 @@ const TaskForm = () => {
 
   const notify = () => toast.success('👍 Task Added Successfully !', {
     position: "top-right",
-    autoClose: 5000,
+    autoClose: 1500,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
@@ -27,22 +31,19 @@ const TaskForm = () => {
   })
 
   const handleSubmit = (values, { resetForm }) => {
-    console.log(values)
-    fetch('http://localhost:3001/add-task', {
-      method: 'POST',
+
+    axios.post('http://localhost:3001/add-task', values, {
       headers: {
         'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(values)
+      }
     })
       .then(response => {
-        response.json()
-      }).then(messageRecived => {
-        console.log(messageRecived)
+        console.log(response.data)
       })
       .catch(error => {
         console.error('Error:', error)
       })
+
     notify()
     resetForm()
   }
@@ -95,20 +96,20 @@ const TaskForm = () => {
       </div>
 
 
-       {/* for notifications i used react toastify  */}
-       <ToastContainer
-            position="top-right"
-            autoClose={1000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-          />
-          <ToastContainer />
+      {/* for notifications i used react toastify  */}
+      <ToastContainer
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      <ToastContainer />
     </>
   )
 }

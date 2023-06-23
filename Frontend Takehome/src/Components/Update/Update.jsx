@@ -5,10 +5,10 @@ import { validationSchema } from "../../utils/validation"
 import { AiFillCloseCircle } from "react-icons/ai"
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import axios from 'axios'
 
 
-
-const Update = ({ name, description, duedate, status, id, Rerenderdata, togglepopup }) => {
+const Update = ({ name, description, lay, duedate, status, id, Rerenderdata, togglepopup }) => {
 
   // initialvalues
   const initialValues = {
@@ -43,23 +43,17 @@ const Update = ({ name, description, duedate, status, id, Rerenderdata, togglepo
 
   // updating data 
   const handleSubmit = (values, { resetForm }) => {
-    fetch(`http://localhost:3001/update-task/${id}`, {
-      method: 'PUT',
+    axios.put(`http://localhost:3001/update-task/${id}`, values, {
       headers: {
         'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(values)
+      }
     })
       .then(response => {
-        response.json()
-      }).then(messageRecived => {
-        console.log(messageRecived)
+        console.log(response.data)
       })
       .catch(error => {
         console.error('Error:', error)
       })
-
-
     notify()
     Rerenderdata()
 
@@ -73,13 +67,9 @@ const Update = ({ name, description, duedate, status, id, Rerenderdata, togglepo
 
   // deleting data
   function deleteTask() {
-    fetch(`http://localhost:3001/delete-task/${id}`, {
-      method: 'DELETE',
-    })
+    axios.delete(`http://localhost:3001/delete-task/${id}`)
       .then(response => {
-        response.json()
-      }).then(messageRecived => {
-        console.log(messageRecived)
+        console.log(response.data)
       })
       .catch(error => {
         console.error('Error:', error)
@@ -130,7 +120,17 @@ const Update = ({ name, description, duedate, status, id, Rerenderdata, togglepo
           </div>
 
 
-          {/* for notifications i used react toastify  */}
+
+
+          <div className="form-group">
+            <button type="submit" id="update" style={{ background: "orange", marginBottom: "1rem", cursor: "pointer" }}>Update Task</button>
+            <span onClick={() => deleteTask()} id='delete' style={{ background: "red" }}>Delete Task</span>
+          </div>
+        </Form>
+      </Formik>
+
+      {
+        lay ? <>
           <ToastContainer
             position="top-right"
             autoClose={1000}
@@ -144,14 +144,12 @@ const Update = ({ name, description, duedate, status, id, Rerenderdata, togglepo
             theme="light"
           />
           <ToastContainer />
+        </>
+          : null
+      }
 
-          <div className="form-group">
-            <button type="submit" id="update" style={{ background: "orange", marginBottom: "1rem", cursor: "pointer" }}>Update Task</button>
-            <span onClick={() => deleteTask()} id='delete' style={{ background: "red" }}>Delete Task</span>
-          </div>
-        </Form>
-      </Formik>
     </div>
+
   )
 }
 

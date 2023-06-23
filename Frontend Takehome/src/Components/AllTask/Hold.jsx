@@ -77,7 +77,7 @@ function Hold({ status }) {
         <>
             <div className="grid-container">
                 {
-                    data.map((value) => {
+                    data.length == !0 ? (data.map((value) => {
                         return (
                             <>
                                 <Box
@@ -86,22 +86,21 @@ function Hold({ status }) {
                                         <div className="task-card" key={value.id} onClick={() => SetSelectedData(value)}>
                                             <div className="task-name">{value.name}</div>
                                             <div className="task-description">{value.description}</div>
-                                            <div className="due-date">Due Date: {value.duedate.slice(0, 10)}</div>
+                                            <div className="due-date">Due Date: {value.duedate !== null ? value.duedate.slice(0, 10) : value.duedate}</div>
                                             <div className="status" style={{ color: value.status === 'COMPLETED' ? "green" : "orange" }}>Status: {value.status}</div>
                                         </div>
                                     </Paper>
                                 </Box>
 
                             </>)
-                    })
+                    })) : <h1 style={{ color: "red" }}>Empty 😢 Add Data</h1>
                 }
             </div >
 
             <div className={`popup_container ${updatetoggle ? 'active' : ''}`}>
                 {
-                    updatetoggle ? <Update {...selectedTaskData} Rerenderdata={dataget} togglepopup={(data) => SetUpdateToggle(data)} /> : null
+                    updatetoggle ? <Update {...selectedTaskData} lay={true} Rerenderdata={dataget} togglepopup={(data) => SetUpdateToggle(data)} /> : null
                 }
-
             </div>
 
         </>

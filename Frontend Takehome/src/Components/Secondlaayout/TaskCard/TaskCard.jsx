@@ -74,7 +74,7 @@ function TaskCard() {
             <div className="task-two-card" key={value.id} onClick={() => setSelectedData(value)}>
               <div className="task-two-name">{value.name}</div>
               <div className="task-two-description">{value.description}</div>
-              <div className="due-two-date">Due Date: {value.duedate.slice(0, 10)}</div>
+              <div className="due-two-date">Due Date: {value.duedate !== null ? value.duedate.slice(0, 10) : value.duedate}</div>
               <div className="status-two" style={{ color: value.status === 'COMPLETED' ? 'green' : 'orange', fontWeight: 'bold' }}>
                 Status: {value.status}
               </div>
@@ -83,7 +83,7 @@ function TaskCard() {
       </div>
 
       <div className="popoup-two">
-        {updatetoggle ? <Update {...selectedTaskData} Rerenderdata={fetchData} togglepopup={(data) => setUpdatetoggle(data)} /> : null}
+        {updatetoggle ? <Update {...selectedTaskData} lay={false} Rerenderdata={fetchData} togglepopup={(data) => setUpdatetoggle(data)} /> : null}
       </div>
     </>
   )
