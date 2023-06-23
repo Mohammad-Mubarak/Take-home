@@ -31,7 +31,7 @@ function Sidebars() {
                 </NavLink>
 
                 <NavLink to="/layout">
-                    <div className="option-five" style={{fontSize:"15px" , color:"green"}}>LayoutTwo <IoMdDoneAll/></div>
+                    <div className="option-five" style={{fontSize:"15px" , color:"red"}}>LayoutTwo <IoMdDoneAll/></div>
                 </NavLink>
 
             </div>

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import './Hold.css'
 import Update from '../Update/Update'
+import { Box, Paper, Button, Typography, Modal } from '@mui/material'
 
 
 function Hold({ status }) {
     const [data, SetData] = useState([])
     const [updatetoggle, SetUpdateToggle] = useState(false)
     const [selectedTaskData, setSelectedTaskData] = useState({})
-
     async function dataget() {
         const datapend = await fetch('http://localhost:3001/get-all-tasks')
         const finaldata = await datapend.json()
@@ -70,6 +70,7 @@ function Hold({ status }) {
     function SetSelectedData(value) {
         setSelectedTaskData(value)
         SetUpdateToggle(!updatetoggle)
+
     }
 
     return (
@@ -79,13 +80,18 @@ function Hold({ status }) {
                     data.map((value) => {
                         return (
                             <>
+                                <Box
+                                >
+                                    <Paper elevation={3}>
+                                        <div className="task-card" key={value.id} onClick={() => SetSelectedData(value)}>
+                                            <div className="task-name">{value.name}</div>
+                                            <div className="task-description">{value.description}</div>
+                                            <div className="due-date">Due Date: {value.duedate.slice(0, 10)}</div>
+                                            <div className="status" style={{ color: value.status === 'COMPLETED' ? "green" : "orange" }}>Status: {value.status}</div>
+                                        </div>
+                                    </Paper>
+                                </Box>
 
-                                <div className="task-card" key={value.id} onClick={() => SetSelectedData(value)}>
-                                    <div className="task-name">{value.name}</div>
-                                    <div className="task-description">{value.description}</div>
-                                    <div className="due-date">Due Date: {value.duedate.slice(0, 10)}</div>
-                                    <div className="status" style={{ color: value.status === 'COMPLETED' ? "green" : "orange" }}>Status: {value.status}</div>
-                                </div>
                             </>)
                     })
                 }
@@ -97,6 +103,7 @@ function Hold({ status }) {
                 }
 
             </div>
+
         </>
     )
 }
