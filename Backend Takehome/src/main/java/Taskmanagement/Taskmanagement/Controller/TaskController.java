@@ -26,8 +26,8 @@ public class TaskController {
 
 
     @PostMapping("/add-task")
-    public String AddTask(@RequestBody TaskEntryDto task, HttpSession session) {
-         session.setAttribute("user","md");
+    public String AddTask(@RequestBody TaskEntryDto task) {
+
         return taskservice.addnewtask(task);
     }
 
