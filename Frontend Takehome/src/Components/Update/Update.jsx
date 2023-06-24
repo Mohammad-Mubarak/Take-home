@@ -63,12 +63,10 @@ const Update = ({ name, description, lay, duedate, status, id, Rerenderdata, tog
     }, 1500)
   }
 
-
-
   // deleting data
   function deleteTask() {
     axios.delete(`http://localhost:3001/delete-task/${id}`)
-      .then(response => {
+     .then(response => {
         console.log(response.data)
       })
       .catch(error => {

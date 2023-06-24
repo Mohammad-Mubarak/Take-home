@@ -24,11 +24,11 @@ public class TaskEntity {
     private int id;
 
 
-    Date duedate;
+   private LocalDate duedate;
 
-    String Name;
+   private String Name;
 
-    String Description;
+   private String Description;
 
     @Enumerated(value = EnumType.STRING)
     private taskstatus status;

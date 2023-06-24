@@ -47,6 +47,10 @@ const TaskForm = () => {
     notify()
     resetForm()
   }
+  
+  var data = JSON.parse(sessionStorage.getItem('data'));
+
+  console.log("🧜‍♂️🦴 ~> file: Task.jsx:53 ~> TaskForm ~> data:  :-> >", data)
 
 
   return (

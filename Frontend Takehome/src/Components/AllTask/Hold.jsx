@@ -5,13 +5,16 @@ import { Box, Paper, Button, Typography, Modal } from '@mui/material'
 
 
 function Hold({ status }) {
+
+    var value = sessionStorage.getItem("data")
+
+
     const [data, SetData] = useState([])
     const [updatetoggle, SetUpdateToggle] = useState(false)
     const [selectedTaskData, setSelectedTaskData] = useState({})
     async function dataget() {
         const datapend = await fetch('http://localhost:3001/get-all-tasks')
         const finaldata = await datapend.json()
-
 
         if (status === 'COMPLETED') {
             let Temptasks = []
@@ -45,7 +48,6 @@ function Hold({ status }) {
 
             }
             SetData(Temptasks)
-
         }
 
 
@@ -55,7 +57,6 @@ function Hold({ status }) {
                 if (finaldata[i].status === 'ONHOLD') {
                     Temptasks.push(finaldata[i])
                 }
-
             }
             SetData(Temptasks)
 
@@ -77,7 +78,8 @@ function Hold({ status }) {
         <>
             <div className="grid-container">
                 {
-                    data.length == !0 ? (data.map((value) => {
+
+                    (data.map((value) => {
                         return (
                             <>
                                 <Box
@@ -86,14 +88,14 @@ function Hold({ status }) {
                                         <div className="task-card" key={value.id} onClick={() => SetSelectedData(value)}>
                                             <div className="task-name">{value.name}</div>
                                             <div className="task-description">{value.description}</div>
-                                            <div className="due-date">Due Date: {value.duedate !== null ? value.duedate.slice(0, 10) : value.duedate}</div>
+                                            <div className="due-date">Due Date: {value.duedate}</div>
                                             <div className="status" style={{ color: value.status === 'COMPLETED' ? "green" : "orange" }}>Status: {value.status}</div>
                                         </div>
                                     </Paper>
                                 </Box>
 
                             </>)
-                    })) : <h1 style={{ color: "red" }}>Empty 😢 Add Data</h1>
+                    }))
                 }
             </div >
 
