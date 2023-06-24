@@ -7,11 +7,6 @@ Integration:
 - Establish communication between the frontend and backend by making HTTP requests from the frontend to the backend APIs. Axios to handle the HTTP requests and process the responses from the backend.
 
 In summary, the project involves building a web application where users can add, update, delete, and retrieve data. The backend, developed with Spring Boot, provides the necessary APIs to handle these operations, while the frontend, developed with React, offers an intuitive user interface for interacting with the backend APIs effectively.
-## Roadmap
-
-- Additional browser support
-
-- Add more integrations
 
 
 ## Installation
